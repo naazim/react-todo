@@ -26,6 +26,25 @@ module.exports = {
       return !todo.completed || showCompleted;
     });
 
+    //search
+    filteredTodos = filteredTodos.filter((todo) => {
+      var text = todo.text.toLowerCase();
+      return searchText === '' || text.indexOf(searchText) > -1;
+    });
+
+    //Sort
+    filteredTodos.sort((a, b) => {
+      if(!a.completed && b.completed){
+        return -1;
+      }
+      else if(a.completed && !b.completed){
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+
     return filteredTodos;
   }
 };

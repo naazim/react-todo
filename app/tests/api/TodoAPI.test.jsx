@@ -53,4 +53,31 @@ describe('TodoAPI', () => {
     });
 
   });
+
+  describe('filterTodos', () => {
+    var todos = [{
+      id: 1,
+      text: 'some text here',
+      completed: false
+    },{
+      id: 2,
+      text: 'other text here',
+      completed: true
+    },{
+      id: 3,
+      text: 'anotherr text here',
+      completed: true
+    }];
+
+    it('should show all todos if completed is true', () => {
+      var actualTodos = TodoAPI.filterTodos(todos, true, '');
+      expect(actualTodos.length).toBe(3);
+    });
+
+    it('should not show all todos if completed is false', () => {
+      var actualTodos = TodoAPI.filterTodos(todos, false, '');
+      expect(actualTodos.length).toBe(1);
+    })
+  })
+
 });
